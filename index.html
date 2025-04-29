@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Bayes' Theorem Visualizer</title>
+    <link rel="stylesheet" href="style.css">
+    <!-- Chart.js CDN -->
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+</head>
+
+<body>
+    <div class="container">
+        <header>
+            <h1>Bayes' Theorem Visualizer</h1>
+            <p class="subtitle">Interactive tool to understand Bayesian updating 🔍</p>
+        </header>
+
+        <section class="sliders">
+            <div class="slider-group">
+                <label for="prior">Prior Probability (P(A))</label>
+                <input type="range" id="prior" min="0" max="1" step="0.01" value="0.5">
+                <div class="value-display" id="prior-value">0.50</div>
+            </div>
+
+            <div class="slider-group">
+                <label for="likelihood">Likelihood (P(B|A))</label>
+                <input type="range" id="likelihood" min="0" max="1" step="0.01" value="0.7">
+                <div class="value-display" id="likelihood-value">0.70</div>
+            </div>
+
+            <div class="slider-group">
+                <label for="likelihood-not">Likelihood (P(B|¬A))</label>
+                <input type="range" id="likelihood-not" min="0" max="1" step="0.01" value="0.2">
+                <div class="value-display" id="likelihood-not-value">0.20</div>
+            </div>
+        </section>
+
+        <section class="result">
+            <div id="loader" class="loader" style="display: none;">Calculating...</div>
+            <h2>Posterior Probability (P(A|B))</h2>
+            <div id="posterior">Calculating...</div>
+            <div class="buttons">
+                <button id="reset-btn">🔄 Reset</button>
+                <button id="info-btn">ℹ️ Info</button>
+            </div>
+
+        </section>
+
+        <section class="chart-container">
+            <canvas id="bayesChart"></canvas>
+        </section>
+    </div>
+
+    <!-- Info Modal -->
+    <div id="info-modal" class="modal">
+        <div class="modal-content">
+            <span class="close">&times;</span>
+            <h2>What is Bayes' Theorem?</h2>
+            <p>
+                Bayes' Theorem describes the probability of an event, based on prior knowledge of related conditions.
+                It updates the probability as more evidence or information becomes available.
+                <br><br>
+                Formula: <strong>P(A|B) = [P(B|A) * P(A)] / [P(B|A) * P(A) + P(B|¬A) * P(¬A)]</strong>
+            </p>
+        </div>
+    </div>
+
+
+    <script src="script.js"></script>
+</body>
+
+</html>
